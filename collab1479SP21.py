@@ -33,7 +33,7 @@ def main():
     jumpTable['6'] = stub                 # Kennedy - call to function goes here
     jumpTable['7'] = stub                 # Long - call to function goes here
     jumpTable['8'] = stub                 # Nguyen - call to function goes here
-    jumpTable['9'] = stub                 # Overby - call to function goes here
+    jumpTable['9'] = overbyFunction      # Overby - call to function goes here
     jumpTable['10'] = stub                # Robarge - call to function goes here
     jumpTable['11'] = stub                # Roeper - call to function goes here
     jumpTable['12'] = stub                # Subba - call to function goes here
@@ -115,7 +115,68 @@ def stub():
 
     print("Not implemented at this time.  Check back later.")
     print("Press ENTER to continue.")
-    input()    
+    input()
+
+
+# *****************************************************************************************
+# FUNCTION:         overbyFunction
+# DESCRIPTION:      Takes a year as an input from the user, and calculates when
+#                   Easter will be that year.
+# OUTPUT EXAMPLE:   User enters 2022
+#                   Program outputs the following:
+#                      Easter occurs on the Seventeenth of April in 2022.
+# *****************************************************************************************
+def overbyFunction():
+    MONTHS = ("January", "February", "March", "April", "May", "June", "July",
+              "August", "September", "October", "November", "December")
+
+    DAYS = ("First", "Second", "Third", "Forth", "Fifth", "Sixth", "Seventh", 
+            "Eighth", "Ninth", "Tenth", "Eleventh", "Twelfth", "Thirteenth", 
+            "Fourteenth", "Fifteenth", "Sixteenth", "Seventeenth", "Eighteenth",
+            "Nineteenth", "Twentieth", "Twenty-first", "Twenty-second", 
+            "Twenty-third", "Twenty-fourth", "Twenty-fifth", "Twenty-sixth", 
+            "Twenty-seventh", "Twenty-eighth", "Twenty-ninth", "Thirtieth")
+    
+    #"Splash" menu describing the program at first start.
+    print("\n" * 2)
+    print("*" * 51)
+    print("*{:^49}*".format('FUNCTION DESCRIPTION'))
+    print("*" * 51)
+    print("* This program takes any year and returns the Day *\n" +
+          "* and Month that Easter Sunday will occure.       *")
+    print("*%49s*" % " ")
+    print("*" * 51)
+    
+    #The Year value
+    year = input("Enter a year: ")
+    year = int(year)
+    
+    #Easter Sunday calculation
+    a = year % 19
+    b = year // 100
+    c = year % 100
+    d = b // 4
+    e = b % 4
+    g = (8 * b + 13) // 25 
+    h = (19 * a + b - d - g + 15) % 30
+    j = c // 4
+    k = c % 4
+    m = (a + 11 * h) // 319
+    r = (2 * e + 2 * j - k - h + m + 32) % 7
+    #Month
+    n = (h - m + r + 90) // 25
+    #Day
+    p = (h - m + r + n + 19) % 32
+    
+    #Month and Day number to word convertion
+    month = MONTHS[n - 1]
+    day = DAYS[p - 1]
+    
+    print("\nEaster occurs on the {} of {} in {}.".format(day, month, year))
+    print("\nPress ENTER to continue.")
+    input()
+
+
 
 # *****************************************************************************************
 # FUNCTION:         smileyFunction
